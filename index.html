@@ -11,7 +11,7 @@
       --text: #1a1a18; --text2: #6b6b67; --text3: #9b9b96;
       --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
       --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #085041;
-      --radius: 10px; --radius-sm: 6px;
+      --radius: 10px;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -22,6 +22,8 @@
       }
     }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; }
+
+    /* 잠금 화면 */
     #lock-screen { position: fixed; inset: 0; z-index: 9999; background: var(--bg3); display: flex; align-items: center; justify-content: center; }
     .lock-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: 16px; padding: 2.5rem 2rem; width: 320px; text-align: center; }
     .lock-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 1.25rem; }
@@ -33,27 +35,49 @@
     .lock-btn:hover { opacity: 0.88; }
     .lock-error { font-size: 12px; color: #e74c3c; margin-top: 10px; min-height: 18px; }
     .lock-hint { font-size: 11px; color: var(--text3); margin-top: 14px; }
+
     #main-content { display: none; }
+
+    /* 헤더 */
     .page-header { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
     .header-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 18px; }
     .header-title { font-size: 16px; font-weight: 600; color: var(--text); }
     .header-sub { font-size: 12px; color: var(--text2); margin-top: 1px; }
+
     .container { max-width: 820px; margin: 0 auto; padding: 20px 16px; }
+
+    /* 검색 */
     .search-row { display: flex; gap: 8px; margin-bottom: 10px; }
     .search-row input { flex: 1; padding: 10px 16px; border: 0.5px solid var(--border2); border-radius: 20px; font-size: 14px; background: var(--bg); color: var(--text); outline: none; font-family: inherit; transition: border-color .2s; }
     .search-row input:focus { border-color: var(--green); }
+
+    /* 태그 */
     .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
     .tag { font-size: 12px; padding: 5px 12px; border: 0.5px solid var(--border2); border-radius: 14px; color: var(--text2); cursor: pointer; background: var(--bg); transition: all .15s; }
     .tag:hover { background: var(--bg2); color: var(--text); }
     .tag.on { border-color: var(--green); color: var(--green-dark); background: var(--green-light); }
-    .tree-section { margin-bottom: 10px; }
-    .cat-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); cursor: pointer; user-select: none; transition: background .15s; }
-    .cat-header:hover { background: var(--bg2); }
-    .cat-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-    .cat-title { font-size: 14px; font-weight: 500; flex: 1; }
-    .cat-count { font-size: 12px; color: var(--text2); }
-    .cat-arrow { font-size: 11px; color: var(--text3); transition: transform .2s; }
+
+    /* 카테고리 헤더 — 강조 */
+    .tree-section { margin-bottom: 12px; }
+    .cat-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px;
+      background: #2c2c2a;
+      border-radius: var(--radius);
+      cursor: pointer; user-select: none;
+      transition: opacity .15s;
+    }
+    .cat-header:hover { opacity: 0.88; }
+    .cat-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.4); }
+    .cat-title { font-size: 15px; font-weight: 700; color: #ffffff; flex: 1; letter-spacing: -0.01em; }
+    .cat-count { font-size: 12px; color: rgba(255,255,255,0.55); }
+    .cat-arrow { font-size: 11px; color: rgba(255,255,255,0.55); transition: transform .2s; }
     .cat-arrow.open { transform: rotate(90deg); }
+    @media (prefers-color-scheme: dark) {
+      .cat-header { background: #1a1a18; border: 0.5px solid rgba(255,255,255,0.15); }
+    }
+
+    /* 노드 */
     .nodes { display: none; padding: 8px 0 4px 28px; flex-direction: column; gap: 6px; }
     .nodes.open { display: flex; }
     .node-row { display: flex; align-items: stretch; }
@@ -65,6 +89,8 @@
     .kw-chip { font-size: 10px; padding: 2px 7px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 8px; color: var(--text2); }
     .node-btn.active .kw-chip { background: var(--bg); border-color: var(--green); color: var(--green-dark); }
     .node-title { font-size: 13px; color: var(--text); font-weight: 500; }
+
+    /* 답변 패널 */
     .answer-panel { margin-top: 6px; margin-bottom: 4px; border: 0.5px solid var(--green); border-radius: var(--radius); overflow: hidden; }
     .ans-header { padding: 12px 16px; background: var(--green-light); display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--green); }
     .ans-header-text { font-size: 14px; font-weight: 500; color: var(--green-dark); flex: 1; }
@@ -138,7 +164,7 @@ if (sessionStorage.getItem('unlocked') === 'yes') {
 
 const cats = [
   {
-    id:'issue', label:'발급 · 재발급', color:'#534AB7',
+    id:'issue', label:'발급 · 재발급', color:'#8B7FE8',
     nodes:[
       { id:'n1', keywords:['발급','신청','재발급','카드신청','새카드'], title:'법인카드 신규 · 재발급 신청',
         answer:{ paras:['그룹웨어에서 기안을 통해 신청합니다.'], items:['그룹웨어 → 새 기안 → 법인카드 발급 신청서 선택','기안 내 모든 항목 작성 필수 (카드종류, 요청구분, 본부/팀명, 은행명, 계좌번호 등)','첨부파일: 통장사본 (법인카드 전용 계좌 사용 권고)','발급 사유: 필수 발급대상이 아닌 경우 사유 자세히 기재'], warn:'결재선: 상신자 → 상신자 소속 팀장/본부장(결재) → 재경팀 박지우 사원(업무처리)', source:'법인카드 사용 지침 3p' }},
@@ -149,13 +175,13 @@ const cats = [
       { id:'n4', keywords:['분실','도난','카드정지','카드 분실'], title:'법인카드 분실 · 도난',
         answer:{ paras:['분실 즉시 카드사에 연락해 사용 정지 후 재발급 기안을 상신하세요.'], items:['① 카드사에 즉시 연락 → 카드 정지 요청 (하나카드 고객센터: 1800-1111)','② 그룹웨어에서 재발급 신청 기안 상신 (신규발급과 동일 절차)','③ 재발급 사유에 "분실로 인한 재발급" 명시','④ 기안 내 분실카드 정지 여부 기재'], source:'법인카드 사용 지침 4p' }},
       { id:'n5', keywords:['반납','퇴사','카드반납'], title:'퇴사 시 법인카드 반납',
-        answer:{ paras:['퇴사 시 법인카드를 반드시 재경팀에 반납해야 합니다.'], items:['담당자: 재경팀 박지우 사원에게 직접 반납','주유 및 하이패스 카드도 함께 반납'], source:'법인카드 사용 지침 15p' }},
+        answer:{ paras:['퇴사 시 법인카드를 반드시 재경팀에 반납해야 합니다.'], items:['담당자: 재경팀 박지우 사원에게 직접 반납','주유 및 하이패스 카드는 차량별 매핑되어 있으므로 이동 금지, 그대로 유지'], source:'법인카드 사용 지침 15p' }},
       { id:'n6', keywords:['비밀번호','카드 비밀번호'], title:'법인카드 비밀번호 설정',
         answer:{ paras:['비밀번호는 본인이 직접 카드사를 통해 설정하거나, 재경팀 박지우 사원에게 요청 시 홈페이지에서 설정해 드립니다.'], items:['하나카드 고객센터: 1800-1111','개인정보 확인 후 설정 또는 변경 가능','재경팀 박지우 사원 요청 시 홈페이지에서 설정 가능'], source:'법인카드 사용 지침 16p' }}
     ]
   },
   {
-    id:'usage', label:'사용 규정', color:'#1D9E75',
+    id:'usage', label:'사용 규정', color:'#2DB88A',
     nodes:[
       { id:'n7', keywords:['개인사용','개인용도','사적사용','개인 사용'], title:'개인 용도 사용 금지',
         answer:{ paras:['법인카드는 업무 관련 경비에만 사용 가능합니다. 개인 용도 사용은 엄격히 금지됩니다.'], items:['개인사용분 → 해당 금액 "전표 미처리" 후 본인이 개인 정산 (재경팀 크로스체크 필수)','개인형 법인카드: 각 사용자별 법인카드 이용대금 출금 계좌로 이체','주유·하이패스 카드 개인사용분 입금 계좌: 하나은행 776-910033-65804 (예금주: 우리와 주식회사)','휴일 사용 시 업무 관련 경비임을 입증할 증빙 첨부 필수'], warn:'개인사용분 입금 지연으로 카드대금 연체 시 회사 신용도 하락. 2회 이상 연체 시 법인카드 회수.', source:'법인카드 사용 지침 14p / Q&A 5p' }},
@@ -166,7 +192,7 @@ const cats = [
     ]
   },
   {
-    id:'expense', label:'계정별 사용 기준', color:'#BA7517',
+    id:'expense', label:'계정별 사용 기준', color:'#D4922A',
     nodes:[
       { id:'n10', keywords:['식대','야근식대','외근식대','점심','밥값'], title:'식대 (복리후생비)',
         answer:{ paras:['식대는 야근/외근 시 법인카드로 결제 가능합니다. 출장식대는 법인카드 결제 불가입니다.'], items:['야근 식대: 18시 이후 결제 / 인당 10,000원(공급가액 기준) 한도','외근 점심 식대: 인당 10,000원(공급가액 기준) 한도','출장 식대: 법인카드 결제 불가 → 1일 3만원 출장일비로 별도 지급','외근(당일): 복리후생비_일반_식대 / 출장(1박 이상): 개인형 법인카드 사용 불가'], warn:'출장 중 개인형 법인카드로 식대 결제 시 경비 불인정됨', source:'법인카드 사용 지침 7p / Q&A 15p' }},
@@ -187,7 +213,7 @@ const cats = [
     ]
   },
   {
-    id:'settlement', label:'지출결의서 작성', color:'#D85A30',
+    id:'settlement', label:'지출결의서 작성', color:'#E07840',
     nodes:[
       { id:'n18', keywords:['지출결의서','전표','결의서작성'], title:'지출결의서 작성 방법',
         answer:{ paras:['그룹웨어(Dooray)에서 우리와 지출결의서를 선택해 작성합니다.'], items:['① Dooray 메인 → 결재 탭 → 새 기안 → "우리와 지출결의서(7월분 지출부터)" 선택','② 결재선 설정: 30만원 미만→팀장 전결 / 30~100만원→본부장 전결 / 100만원 이상→대표이사 전결','③ 문서제목: 사용월_팀명&사원명_개인형 법인카드 사용내역','④ 회계단위: 우리와 / 증빙구분: 법인카드 / 전표일: 매월 말일 / 지급요청일: 익월 22일 (휴일 관계없이)','⑤ 카드 선택 후 카드 사용기간 조회 → 증빙 추가 → 부가세 유형 선택','⑥ 재무정보: 계정과목, 적요, 코스트센터 입력 후 상신'], warn:'마감: 익월 1~2 영업일까지. 지연 시 경비 처리 불가. 적요 형식: *월 **팀 성함 **비 (예: 7월 재경팀 김미란 회식비)', source:'지출결의서 작성 매뉴얼' }},
@@ -204,12 +230,12 @@ const cats = [
     ]
   },
   {
-    id:'caution', label:'주의사항', color:'#E24B4A',
+    id:'caution', label:'주의사항', color:'#E05050',
     nodes:[
       { id:'n24', keywords:['연체','카드연체','대금연체'], title:'법인카드 대금 연체',
         answer:{ paras:['법인카드 대금이 연체되면 회사 신용도에 영향을 미칩니다.'], items:['개인형 법인카드: 개인 명의 + 법인 신용 기반 → 연체 시 법인 신용도 하락','발급 이후 2회 이상 연체 시 법인카드 회수','결제 당일 계좌 잔액 확인 필수'], warn:'사용내역 SMS 수신 시 이용료(400원)는 본인 부담. 잔액 확인 필요.', source:'법인카드 사용 지침 15p' }},
       { id:'n25', keywords:['주유카드','하이패스카드','차량이동'], title:'주유·하이패스 카드 차량 간 이동 금지',
-        answer:{ paras:['주유 및 하이패스 카드는 차량별로 매칭되어 있어 다른 차량으로 이동해 사용하면 안 됩니다.'], items:['주유·하이패스 카드: 차량별 1:1 매칭, 차량 간 이동 금지','관련 특이사항은 인사총무팀에 문의','자차 사용 시 법인카드로 주유·통행료·주차료 결제 금지 → 차량운행일지 작성 후 실비 청구'], source:'법인카드 사용 지침 15p' }},
+        answer:{ paras:['주유 및 하이패스 카드는 차량별로 매핑되어 있어 다른 차량으로 이동해 사용하면 안 됩니다.'], items:['주유·하이패스 카드: 차량별 1:1 매핑, 차량 간 이동 금지','관련 특이사항은 인사총무팀에 문의','자차 사용 시 법인카드로 주유·통행료·주차료 결제 금지 → 차량운행일지 작성 후 실비 청구'], source:'법인카드 사용 지침 15p' }},
       { id:'n26', keywords:['접대비회의비','계정대체','계정변경'], title:'접대비·회의비 계정대체 금지',
         answer:{ paras:['접대비와 회의비는 성격이 다른 계정입니다. 한도 초과를 피하기 위해 임의로 계정을 바꾸면 안 됩니다.'], items:['접대비 한도 초과분을 회의비로 대체 금지','회식비 예산 초과분을 회의비로 대체 금지','세무조사 시 회의비를 접대비로 재분류하면 추징세액 발생'], warn:'세무조사 시 회의비는 중점 검토 계정입니다. 반드시 실제 회의 목적으로만 사용하세요.', source:'법인카드 사용 지침 별첨 Ⅲ' }}
     ]
@@ -238,8 +264,7 @@ function filterCat(id) {
 function doSearch(q) { renderTree(q); }
 function matchNode(node, q) {
   if (!q) return true;
-  const lq = q.toLowerCase().replace(/\s/g,'');
-  return getFullText(node).includes(lq);
+  return getFullText(node).includes(q.toLowerCase().replace(/\s/g,''));
 }
 function renderTree(q = '') {
   const el = document.getElementById('tree');

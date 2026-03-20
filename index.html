@@ -22,61 +22,18 @@
       }
     }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; }
-
-    /* ── 비밀번호 화면 ── */
-    #lock-screen {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg3);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .lock-card {
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
-      width: 320px;
-      text-align: center;
-    }
-    .lock-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: var(--green-light);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin: 0 auto 1.25rem;
-    }
+    #lock-screen { position: fixed; inset: 0; z-index: 9999; background: var(--bg3); display: flex; align-items: center; justify-content: center; }
+    .lock-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: 16px; padding: 2.5rem 2rem; width: 320px; text-align: center; }
+    .lock-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 1.25rem; }
     .lock-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
     .lock-sub { font-size: 13px; color: var(--text2); margin-bottom: 1.5rem; line-height: 1.5; }
-    .lock-input {
-      width: 100%; padding: 11px 14px;
-      border: 0.5px solid var(--border2);
-      border-radius: 10px;
-      font-size: 15px; text-align: center;
-      letter-spacing: 4px;
-      background: var(--bg2); color: var(--text);
-      outline: none; font-family: inherit;
-      transition: border-color .2s;
-      margin-bottom: 12px;
-    }
+    .lock-input { width: 100%; padding: 11px 14px; border: 0.5px solid var(--border2); border-radius: 10px; font-size: 15px; text-align: center; letter-spacing: 4px; background: var(--bg2); color: var(--text); outline: none; font-family: inherit; transition: border-color .2s; margin-bottom: 12px; }
     .lock-input:focus { border-color: var(--green); }
-    .lock-btn {
-      width: 100%; padding: 11px;
-      background: var(--green); color: white;
-      border: none; border-radius: 10px;
-      font-size: 14px; font-weight: 500;
-      cursor: pointer; transition: opacity .15s;
-      font-family: inherit;
-    }
+    .lock-btn { width: 100%; padding: 11px; background: var(--green); color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity .15s; font-family: inherit; }
     .lock-btn:hover { opacity: 0.88; }
-    .lock-error {
-      font-size: 12px; color: #e74c3c;
-      margin-top: 10px; min-height: 18px;
-      transition: opacity .2s;
-    }
+    .lock-error { font-size: 12px; color: #e74c3c; margin-top: 10px; min-height: 18px; }
     .lock-hint { font-size: 11px; color: var(--text3); margin-top: 14px; }
-
-    /* ── 메인 콘텐츠 (잠김 상태에서 숨김) ── */
     #main-content { display: none; }
-
-    /* ── 이하 기존 스타일 전부 ── */
     .page-header { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
     .header-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 18px; }
     .header-title { font-size: 16px; font-weight: 600; color: var(--text); }
@@ -108,8 +65,7 @@
     .kw-chip { font-size: 10px; padding: 2px 7px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 8px; color: var(--text2); }
     .node-btn.active .kw-chip { background: var(--bg); border-color: var(--green); color: var(--green-dark); }
     .node-title { font-size: 13px; color: var(--text); font-weight: 500; }
-    .answer-panel { display: none; margin-top: 18px; border: 0.5px solid var(--green); border-radius: var(--radius); overflow: hidden; }
-    .answer-panel.open { display: block; }
+    .answer-panel { margin-top: 6px; margin-bottom: 4px; border: 0.5px solid var(--green); border-radius: var(--radius); overflow: hidden; }
     .ans-header { padding: 12px 16px; background: var(--green-light); display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--green); }
     .ans-header-text { font-size: 14px; font-weight: 500; color: var(--green-dark); flex: 1; }
     .ans-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--green); line-height: 1; }
@@ -128,21 +84,18 @@
 </head>
 <body>
 
-<!-- 비밀번호 잠금 화면 -->
 <div id="lock-screen">
   <div class="lock-card">
     <div class="lock-icon">🔒</div>
     <div class="lock-title">우리와 법인카드 안내</div>
     <div class="lock-sub">사내 전용 페이지입니다.<br>비밀번호를 입력해 주세요.</div>
-    <input class="lock-input" id="pw-input" type="password" placeholder="비밀번호" maxlength="20"
-      onkeydown="if(event.key==='Enter') tryUnlock()" />
+    <input class="lock-input" id="pw-input" type="password" placeholder="비밀번호" maxlength="20" onkeydown="if(event.key==='Enter') tryUnlock()" />
     <button class="lock-btn" onclick="tryUnlock()">입장하기</button>
     <div class="lock-error" id="pw-error"></div>
     <div class="lock-hint">문의: 재경팀 박지우 사원</div>
   </div>
 </div>
 
-<!-- 메인 콘텐츠 -->
 <div id="main-content">
   <div class="page-header">
     <div class="header-icon">💳</div>
@@ -151,22 +104,18 @@
       <div class="header-sub">키워드로 빠르게 찾는 규정 가이드 · 재경팀 2026.01 기준</div>
     </div>
   </div>
-
   <div class="container">
     <div class="search-row">
-      <input id="srch" placeholder="키워드 검색 (예: 신규 발급, 한도, 분실, 식대, 회의비, 접대비, 택시...)" oninput="doSearch(this.value)" />
+      <input id="srch" placeholder="키워드 검색 (예: 식대, 한도, 분실, 회의비, 접대비, 택시...)" oninput="doSearch(this.value)" />
     </div>
     <div class="tag-row" id="tags"></div>
     <div id="tree"></div>
-
     <div class="footer">우리와 주식회사 재경팀 · 추가 문의: 재경팀 박지우 사원</div>
   </div>
 </div>
 
 <script>
-// ── 비밀번호 설정 (여기만 바꾸면 됩니다!) ──────────────────
 const PASSWORD = 'wooriwa01';
-// ────────────────────────────────────────────────────────────
 
 function tryUnlock() {
   const val = document.getElementById('pw-input').value;
@@ -182,30 +131,27 @@ function tryUnlock() {
     setTimeout(() => { err.textContent = ''; }, 2500);
   }
 }
-
-// 같은 탭에서 새로고침 시 재입력 생략
 if (sessionStorage.getItem('unlocked') === 'yes') {
   document.getElementById('lock-screen').style.display = 'none';
   document.getElementById('main-content').style.display = 'block';
 }
 
-// ── 기존 법인카드 데이터 & 기능 ──────────────────────────────
 const cats = [
   {
     id:'issue', label:'발급 · 재발급', color:'#534AB7',
     nodes:[
       { id:'n1', keywords:['발급','신청','재발급','카드신청','새카드'], title:'법인카드 신규 · 재발급 신청',
-        answer:{ paras:['그룹웨어에서 기안을 통해 신청합니다.'], items:['그룹웨어 → 새 기안 → 법인카드 발급 신청서 선택','기안 내 모든 항목 작성 필수 (카드종류, 요청구분, 본부/팀명, 은행명, 계좌번호 등)','첨부파일: 통장사본 (법인카드 전용 계좌 사용 권고)','발급 사유: 필수 발급대상이 아닌 경우 사유 자세히 기재'], warn:'결재선: 상신자 → 상신자 소속 팀장/본부장(결재) → 재경팀 박지우 사원(업무담당)', source:'법인카드 사용 지침 3p' }},
-      { id:'n2', keywords:['한도','한도금액','카드한도','발급한도'], title:'법인카드 한도',
-        answer:{ paras:['필수발급 대상별 법인카드 한도는 아래와 같습니다.'], items:['임원: 1천만원','팀장: 2백만원','영업팀원: 1백만원','각 팀별 팀원 1명: 1백만원'], note:'한도 적용 기간: 전월 사용액 + 당월 대금 이체 전일 사용액 합산', source:'법인카드 사용 지침 2p' }},
+        answer:{ paras:['그룹웨어에서 기안을 통해 신청합니다.'], items:['그룹웨어 → 새 기안 → 법인카드 발급 신청서 선택','기안 내 모든 항목 작성 필수 (카드종류, 요청구분, 본부/팀명, 은행명, 계좌번호 등)','첨부파일: 통장사본 (법인카드 전용 계좌 사용 권고)','발급 사유: 필수 발급대상이 아닌 경우 사유 자세히 기재'], warn:'결재선: 상신자 → 재경팀장(합의) → 상신자 소속 팀장/본부장(결재) → 재경팀 박지우 사원(업무처리)', source:'법인카드 사용 지침 3p' }},
+      { id:'n2', keywords:['한도','한도금액','카드한도','발급한도'], title:'직급별 법인카드 한도',
+        answer:{ paras:['필수발급 대상별 법인카드 한도는 아래와 같습니다.'], items:['임원: 1천만원','팀장 / 영업팀장: 2백만원 ~ 5백만원','영업팀원: 1백만원','각 팀별 팀원 1명: 1백만원'], note:'한도 적용 기간: 전월 사용액 + 당월 대금 이체 전일 사용액 합산', source:'법인카드 사용 지침 2p' }},
       { id:'n3', keywords:['한도증액','한도초과','증액요청','한도 초과'], title:'한도 초과 · 증액 요청',
-        answer:{ paras:['한도 초과로 결제가 안 될 경우 한도 증액 기안을 상신하세요.'], items:['기재사항: 카드번호 / 증액 요청 기간 / 증액 요청 금액 / 증액 요청 사유','결재선: 상신자 → 상신자 소속 팀장/본부장(결재) → 재경팀 박지우 사원(업무담당)','한도 적용 기간: 전월 사용액 + 당월 대금 이체 전 사용액 합산'], note:'예시) 출장으로 인한 한도 증액 요청 시 출장신청서를 관련문서로 연결', source:'법인카드 사용 지침 2p / Q&A 9p' }},
-      { id:'n4', keywords:['분실','도난','카드정지','카드 분실'], title:'법인카드 분실 · 도난',
-        answer:{ paras:['분실 즉시 카드사에 연락해 사용 정지 후 재발급 기안을 상신하세요.'], items:['① 카드사에 즉시 연락 → 카드 정지 요청 (하나카드 고객센터: 1800-1111)','② 그룹웨어에서 재발급 신청 기안 상신 (신규발급과 동일 절차)','③ 재발급 사유에 "분실로 인한 재발급" 명시','④ 기안 내 분실카드 정지 여부 기재'], source:'법인카드 사용 지침 4p' }},
+        answer:{ paras:['한도 초과로 결제가 안 될 경우 한도 증액 기안을 상신하세요.'], items:['기재사항: 카드번호 / 증액 요청 기간 / 증액 요청 금액 / 증액 요청 사유','결재선: 상신자 → 재경팀장(합의) → 상신자 소속 팀장/본부장(결재) → 재경팀 박지우 사원(업무처리)','한도 적용 기간: 전월 사용액 + 당월 대금 이체 전 사용액 합산'], note:'예시) 출장으로 인한 한도 증액 요청 시 출장신청서를 관련문서로 연결', source:'법인카드 사용 지침 2p / Q&A 9p' }},
+      { id:'n4', keywords:['분실','도난','잃어버','카드정지','카드 분실'], title:'법인카드 분실 · 도난',
+        answer:{ paras:['분실 즉시 카드사에 연락해 사용 정지 후 재발급 기안을 상신하세요.'], items:['① 카드사에 즉시 연락 → 카드 정지 요청 (하나카드 고객센터: 1800-1111)','② 그룹웨어에서 재발급 신청 기안 상신 (신규발급과 동일 절차)','③ 재발급 사유에 "분실로 인한 재발급" 명시','④ 기안 내 분실카드 정지 여부 기재'], warn:'분실 전 부정사용 발생 시 경위서 작성 필요. 연체 2회 이상 시 법인카드 회수.', source:'법인카드 사용 지침 4p' }},
       { id:'n5', keywords:['반납','퇴사','카드반납'], title:'퇴사 시 법인카드 반납',
-        answer:{ paras:['퇴사 시 법인카드를 반드시 재경팀에 반납해야 합니다.'], items:['담당자: 재경팀 박지우 사원에게 직접 반납','주유 및 하이패스 카드는 법인차량 내 비치(이동 X)'], source:'법인카드 사용 지침 15p' }},
+        answer:{ paras:['퇴사 시 법인카드를 반드시 재경팀에 반납해야 합니다.'], items:['담당자: 재경팀 박지우 사원에게 직접 반납','주유 및 하이패스 카드도 함께 반납'], source:'법인카드 사용 지침 15p' }},
       { id:'n6', keywords:['비밀번호','PIN','카드 비밀번호'], title:'법인카드 비밀번호 설정',
-        answer:{ paras:['비밀번호는 본인이 직접 카드사를 통해 설정합니다.'], items:['하나카드 고객센터: 1800-1111','개인정보 확인 후 설정 또는 변경 가능'], source:'법인카드 사용 지침 16p' }}
+        answer:{ paras:['비밀번호는 본인이 직접 카드사를 통해 설정하거나, 재경팀 박지우 사원에게 요청 시 홈페이지에서 설정해 드립니다.'], items:['하나카드 고객센터: 1800-1111','개인정보 확인 후 설정 또는 변경 가능','재경팀 박지우 사원 요청 시 홈페이지에서 설정 가능'], source:'법인카드 사용 지침 16p' }}
     ]
   },
   {
@@ -216,52 +162,52 @@ const cats = [
       { id:'n8', keywords:['카드종류','개인형','공용','주유카드','하이패스'], title:'법인카드 종류 및 구분',
         answer:{ paras:['법인카드는 용도에 따라 세 가지로 구분됩니다.'], items:['개인형 법인카드: 개인 명의로 발급 — 식대, 회식비, 회의비, 여비교통비, 접대비 등','공용 법인카드: 법인 명의로 발급 — 개인형 카드 계정 외 나머지 계정 (사전 기안 필수)','주유·하이패스 카드: 법인 명의 발급, 업무용 차량 전용','공용카드 보유 부서: 인사총무팀, 브랜드전략팀, 온라인팀(본사) / 관리팀(음성공장) / 연구개발팀(연구소)'], warn:'공용법인카드 사용 시 반드시 사전 기안 품의 후 결제. 사용대장 작성 및 기안용지 제출 필수.', source:'법인카드 사용 지침 5~6p' }},
       { id:'n9', keywords:['사전기안','기안품의','사전품의'], title:'사전 기안이 필요한 경우',
-        answer:{ paras:['아래 계정 외 다른 계정으로 법인카드 사용 시 사전 기안 품의 필수입니다.'], items:['기안 없이 사용 가능한 개인형 카드 계정: 식대, 회식비, 회의비, 여비교통비, 차량유지비, 접대비(영업본부), 우편료, 택배비, 퀵서비스, 증명발급수수료','이 외 계정(소모품비, 시험연구비, 견본비, 교육훈련비 등): 공용법인카드 + 사전 기안 필수','결재 기준 — 팀장 전결: 30만원 미만 / 본부장 전결: 100만원 미만 / 대표이사 전결: 100만원 이상'], source:'법인카드 사용 지침 7p / Q&A 3p' }}
+        answer:{ paras:['아래 계정 외 다른 계정으로 법인카드 사용 시 사전 기안 품의 필수입니다.'], items:['기안 없이 사용 가능한 개인형 카드 계정: 식대, 회식비, 회의비, 여비교통비, 차량유지비, 접대비, 우편료, 택배비, 퀵서비스, 증명발급수수료','이 외 계정(소모품비, 시험연구비, 견본비, 교육훈련비 등): 공용법인카드 + 사전 기안 필수','결재 기준 — 팀장 전결: 30만원 미만 / 본부장 전결: 100만원 미만 / 대표이사 전결: 100만원 이상'], source:'법인카드 사용 지침 7p / Q&A 3p' }}
     ]
   },
   {
     id:'expense', label:'계정별 사용 기준', color:'#BA7517',
     nodes:[
       { id:'n10', keywords:['식대','야근식대','외근식대','점심','밥값'], title:'식대 (복리후생비)',
-        answer:{ paras:['식대는 야근/외근 시 법인카드로 결제 가능합니다. 출장식대는 법인카드 결제 불가입니다.'], items:['야근 식대: 18시 이후 결제 / 인당 10,000원(공급가액 기준) 한도','외근 점심 식대: 인당 10,000원(공급가액 기준) 한도','출장 식대: 법인카드 결제 불가 → 1일 3만원 출장일비로 별도 지급','외근(당일): 복리후생비_일반_식대 / 출장(1박 이상): 개인형 법인카드 사용 불가'], warn:'출장 중 식대를 개인형 법인카드로 결제하면 경비 불인정될 수 있습니다.', source:'법인카드 사용 지침 7p / Q&A 15p' }},
+        answer:{ paras:['식대는 야근/외근 시 법인카드로 결제 가능합니다. 출장식대는 법인카드 결제 불가입니다.'], items:['야근 식대: 18시 이후 결제 / 인당 10,000원(공급가액 기준) 한도','외근 점심 식대: 인당 10,000원(공급가액 기준) 한도','출장 식대: 법인카드 결제 불가 → 1일 3만원 출장일비로 별도 지급','외근(당일): 복리후생비_일반_식대 / 출장(1박 이상): 개인형 법인카드 사용 불가'], warn:'출장 중 개인형 법인카드로 식대 결제 시 경비 불인정됨', source:'법인카드 사용 지침 7p / Q&A 15p' }},
       { id:'n11', keywords:['회식','회식비','팀회식','저녁'], title:'회식비 기준',
         answer:{ paras:['회식비는 팀별 예산 한도 내에서 사용하며, 최상급자 명의 카드로 결제합니다.'], items:['월 한도: 팀원 수 × 5만원 / 분기 누적 소진 가능 (분기 팀원별 15만원)','결제자: 참석자 중 최상급자 명의 법인카드 (임원 또는 팀장 카드 지향)','진행 조건: 1주일 전 공지, 1차에서 저녁 9시 전 종료 (9시 이후 법인카드 사용 제한)','상품권 / 현물성 물건 구매 후 나눠갖기 불가','예산 초과 시: 본부장 전결로 사전 기안 품의 필수'], warn:'회식비 예산 초과분을 회의비로 계정대체 금지 (세무조사 시 중점 검토 계정)', source:'법인카드 사용 지침 7p' }},
       { id:'n12', keywords:['회의비','회의','미팅비용'], title:'회의비 기준',
         answer:{ paras:['회의비는 사내 타팀 또는 외부 거래처와의 회의에 사용합니다. 팀 자체 회의에는 사용 불가합니다.'], items:['사용 가능: 사내 타팀과의 회의, 외부 거래처와의 회의','매출 거래처와의 회의 → 접대비 / 매입 거래처와의 회의 → 회의비','팀 자체 회의 사용 시: 사전 본부장 승인 필수','지출결의서 작성 시: 회의일정/장소/안건/참석인원 등 세부사항 자세히 기재','회의록 또는 회의자료 첨부 필수 (미첨부 시 경비처리 불가)'], warn:'회의비를 접대비 대용으로 사용 금지. 세무조사 시 접대비로 재분류 시 추징세액 부과 가능.', source:'법인카드 사용 지침 8p' }},
       { id:'n13', keywords:['접대비','접대','거래처접대'], title:'접대비 기준',
-        answer:{ paras:['접대비는 외부 거래처 접대에 사용하며, 팀/직급별 한도가 있습니다.'], items:['한도: 팀장 월 50만원 / 팀원 월 20만원 (공급가액 기준)','지출결의서 작성 시: 접대일시/장소/사유/접대상대 내역 작성 필수','영업본부, 해외사업팀, 온라인팀, 본부장, 대표이사 외 접대 시: 본부장 전결 사전 기안 품의 필수','접대비 사용 기안 → 지출결의서 관련문서로 연결'], warn:'접대비 한도 초과분을 회의비로 계정대체 금지. 경조사비는 법인카드 사용 지양.', source:'법인카드 사용 지침 12p / Q&A 6p' }},
+        answer:{ paras:['접대비는 외부 거래처 접대에 사용하며, 팀/직급별 한도가 있습니다.'], items:['한도: 팀장 월 50만원 / 팀원 월 20만원 (공급가액 기준)','지출결의서 작성 시: 접대일시/장소/사유/접대상대 내역 작성 필수','영업본부, 해외사업팀, 온라인팀, 본부장, 대표이사 외 접대 시: 본부장 전결 사전 기안 품의 필수','접대비 사용 기안 → 지출결의서 관련문서로 연결'], warn:'접대비 한도 초과분을 회의비로 계정대체 금지.', source:'법인카드 사용 지침 12p / Q&A 6p' }},
+      { id:'n13b', keywords:['접대비관리항목','접대관리','접대항목'], title:'접대비 사용 시 관리항목 작성',
+        answer:{ paras:['접대비 사용 시 아래 관리항목을 반드시 작성해야 합니다.'], items:['접대상대: 거래처 명 / 접대상대 성명','접대일시','접대장소','접대사유','영업본부 외 접대비 사용 시: 본부장 전결로 기안 품의 후 지출결의서 내 첨부 필수'], source:'법인카드 사용 지침 12p' }},
       { id:'n14', keywords:['택시비','택시','교통비','야근택시'], title:'택시비 기준',
-        answer:{ paras:['택시비는 상황에 따라 경비 인정 여부가 다릅니다.'], items:['야근 후 택시비: 23시 이후 하차 시 가능 (카드 승인시간이 하차시간 기준)','접대 후 택시비: 팀장 이상은 23시 이후 하차 시 가능 / 팀원은 사전 팀장 승인 득한 접대에 한해 인정','회식 후 택시비: 경비 불인정','고급택시(모범택시 등): 이용 불가','출장/외근 시 자택 ↔ 역/터미널 왕복 교통비: 경비 불인정'], warn:'카드 승인시간이 하차시간으로 판단됩니다. 이른 하차 시 경비 불인정.', source:'법인카드 사용 지침 9p' }},
+        answer:{ paras:['택시비는 상황에 따라 경비 인정 여부가 다릅니다.'], items:['야근 후 택시비: 23시 이후 하차 시 가능','접대 후 택시비: 팀장 이상은 23시 이후 하차 시 가능 / 팀원은 사전 팀장 승인 득한 접대에 한해 인정','회식 후 택시비: 경비 불인정','고급택시(모범택시 등): 이용 불가','출장/외근 시 자택 ↔ 역/터미널 왕복 교통비: 경비 불인정'], warn:'카드 승인시간이 하차시간으로 판단됩니다. 이른 하차 시 경비 불인정.', source:'법인카드 사용 지침 9p' }},
       { id:'n15', keywords:['숙박','숙박비','출장숙박','호텔'], title:'숙박비 기준 (출장)',
-        answer:{ paras:['출장 숙박비는 1박 7만원 이내에서 실비를 법인카드로 결제합니다.'], items:['숙박 한도: 1박 / 7만원','정액 일비 대신 실비를 법인카드로 결제 (한도 내)','해외 숙박: 국가별 기준 상이 → 재경팀 사전 확인 필요','항공권 및 숙소 예약: 개인형 법인카드 사용 금지 → 본사 공용법인카드 사용'], warn:'해외 출장 시 공항 주차료, 식비 등 중복 지원 불가 (출장여비에 포함된 금액).', source:'법인카드 사용 지침 9p / Q&A 5p' }},
+        answer:{ paras:['출장 숙박비는 1박 7만원 이내에서 실비를 법인카드로 결제합니다.'], items:['숙박 한도: 1박 / 7만원','정액 일비 대신 실비를 법인카드로 결제 (한도 내)','해외 숙박: 국가별 기준 상이 → 재경팀 사전 확인 필요','해외 항공권 및 숙소 예약: 개인형 법인카드 사용 금지 → 본사 공용법인카드 사용'], warn:'해외 출장 시 공항 주차료, 식비 등 중복 지원 불가 (출장여비에 포함된 금액).', source:'법인카드 사용 지침 9p / Q&A 5p' }},
       { id:'n16', keywords:['주유','차량유지','유류대','차량'], title:'차량유지비 기준',
-        answer:{ paras:['업무용 법인차량 사용 시 차량유지비 계정으로 처리합니다.'], items:['유류대: 차량별 배정된 주유카드로 주유 (부가세 불공제)','주차료 / 통행료: 업무용 차량 사용 시 결제분 (부가세 불공제)','차량수선: 워셔액, 엔진오일, 타이어 교체 등 — 수선 발생 시 인사총무팀 사전 공유 필수','대리운전: 팀장에게 사전 보고 필수, 증빙 지출결의서에 첨부'], warn:'개인 차량 사용 시 법인카드로 주유·통행료·주차료 결제 금지. 차량운행일지 작성 후 별도 정산.', source:'법인카드 사용 지침 11p / Q&A 7p' }},
+        answer:{ paras:['업무용 법인차량 사용 시 차량유지비 계정으로 처리합니다.'], items:['유류대: 차량별 배정된 주유카드로 주유','주차료 / 통행료: 업무용 차량 사용 시 결제분','차량수선: 워셔액, 엔진오일, 타이어 교체 등 — 수선 발생 시 인사총무팀 사전 공유 필수','대리운전: 팀장에게 사전 보고 필수, 증빙 지출결의서에 첨부'], warn:'개인 차량 사용 시 법인카드로 주유·통행료·주차료 결제 금지. 차량운행일지 작성 후 별도 정산.', source:'법인카드 사용 지침 11p / Q&A 7p' }},
       { id:'n17', keywords:['택배','퀵서비스','우편','배송비'], title:'택배 · 퀵서비스 · 우편',
-        answer:{ paras:['택배, 퀵서비스, 우편 비용의 계정 처리 기준입니다.'], items:['일반 택배: 물류비_기타_택배비 (부가세 공제)','퀵서비스: 물류비_기타_퀵서비스 (부가세 공제)','일반우편/등기우편: 통신비_우편 (부가세 불공제)','우체국에서 보내는 택배: 통신비_우편 계정, 부가세 불공제 처리'], source:'법인카드 사용 지침 13p' }}
+        answer:{ paras:['택배, 퀵서비스, 우편 비용의 계정 처리 기준입니다.'], items:['일반 택배: 물류비_기타_택배비 (부가세 공제)','퀵서비스: 물류비_기타_퀵서비스 (부가세 공제)','일반우편/등기우편: 통신비_우편 (부가세 불공제)','우체국에서 보내는 택배: 통신비_우편 계정 (부가세 불공제)'], source:'법인카드 사용 지침 13p' }}
     ]
   },
   {
     id:'settlement', label:'지출결의서 작성', color:'#D85A30',
     nodes:[
       { id:'n18', keywords:['지출결의서','전표','결의서작성'], title:'지출결의서 작성 방법',
-        answer:{ paras:['그룹웨어(Dooray)에서 우리와 지출결의서를 선택해 작성합니다.'], items:['① Dooray 메인 → 장표 탭 → "우리와 지출결의서(7월분 지출부터)" 선택','② 결재선 설정: 30만원 미만→팀장 전결 / 30~100만원→본부장 전결 / 100만원 이상→대표이사 전결','③ 문서제목: [사용월]_[팀명&사원명&직급]_개인형법인카드 사용내역','④ 회계단위: 우리와 / 증빙구분: 법인카드 / 전표일: 매월 말일 / 지급요청일: 익월 22일','⑤ 카드 선택 후 카드 사용기간 조회 → 증빙 추가 → 부가세 유형 선택','⑥ 재무정보: 계정과목, 적요, 코스트센터 입력 후 상신'], warn:'마감: 익월 1~2 영업일까지. 지연 시 경비 처리 불가. 적요 형식: *월 **팀 성함 **비 (예: 7월 재경팀 김미란 회식비)', source:'지출결의서 작성 매뉴얼' }},
+        answer:{ paras:['그룹웨어(Dooray)에서 우리와 지출결의서를 선택해 작성합니다.'], items:['① Dooray 메인 → 결재 탭 → 새 기안 → "우리와 지출결의서(7월분 지출부터)" 선택','② 결재선 설정: 30만원 미만→팀장 전결 / 30~100만원→본부장 전결 / 100만원 이상→대표이사 전결','③ 문서제목: 사용월_팀명&사원명_개인형 법인카드 사용내역','④ 회계단위: 우리와 / 증빙구분: 법인카드 / 전표일: 매월 말일 / 지급요청일: 익월 22일 (휴일 관계없이)','⑤ 카드 선택 후 카드 사용기간 조회 → 증빙 추가 → 부가세 유형 선택','⑥ 재무정보: 계정과목, 적요, 코스트센터 입력 후 상신'], warn:'마감: 익월 1~2 영업일까지. 지연 시 경비 처리 불가. 적요 형식: *월 **팀 성함 **비 (예: 7월 재경팀 김미란 회식비)', source:'지출결의서 작성 매뉴얼' }},
       { id:'n19', keywords:['마감','제출기한','마감일','상신기한'], title:'지출결의서 마감 기한',
-        answer:{ paras:['법인카드 지출결의서는 매월 익월 1~2 영업일까지 상신해야 합니다.'], items:['개인형 법인카드: 전표일 매월 말일 / 지급요청일 익월 22일','주유·하이패스·공용카드: 지급요청일 익월 23일','회계일자·자금예정일자가 휴일이어도 동일하게 입력','말일 사용분이 D+2~3일 후 조회되는 경우 있음 → 최종 조회 후 상신'], warn:'지연 상신 시 경비 처리 불가. 추가 내역 발생 시 기존 지출결의서를 관련문서로 연결하여 추가 상신.', source:'지출결의서 작성 매뉴얼 / Q&A 12p' }},
+        answer:{ paras:['법인카드 지출결의서는 매월 1~2 영업일까지 상신해야 합니다.'], items:['개인형 법인카드: 전표일 매월 말일 / 지급요청일 익월 22일','주유·하이패스·공용카드: 지급요청일 익월 23일','회계일자·자금예정일자가 휴일이어도 동일하게 입력','말일 사용분이 D+2~3일 후 조회되는 경우 있음 → 최종 조회 후 상신'], warn:'지연 상신 시 경비 처리 불가. 추가 내역 발생 시 기존 지출결의서를 관련문서로 연결하여 추가 상신.', source:'지출결의서 작성 매뉴얼 / Q&A 12p' }},
       { id:'n20', keywords:['회의록','증빙첨부','첨부서류'], title:'회의비 사용 시 회의록 첨부',
         answer:{ paras:['회의비로 법인카드 결제 시 반드시 회의록 또는 회의자료를 지출결의서에 첨부해야 합니다.'], items:['회의록 기재 항목: 회의일시, 회의장소, 참석자, 회의주제, 세부내용','회의록 미첨부 시 경비처리 불가','회의비 관리항목 작성: 회의안건, 회의일정, 회의장소, 참석인원'], warn:'세무조사 시 회의비는 중점 검토 계정. 회의비가 접대비로 재분류될 경우 추징세액 발생 가능.', source:'법인카드 사용 지침 별첨 Ⅰ / Q&A 11p' }},
-      { id:'n21', keywords:['코스트센터','CC','부서분리','여러부서'], title:'여러 부서가 함께 쓴 비용 처리',
-        answer:{ paras:['여러 부서가 함께 회식·회의를 했을 경우, 지출결의서 내에서 코스트센터를 나눠 작성합니다.'], items:['처리할 건 선택 후 재무정보에서 "복사" 클릭','사용부서 및 코스트센터를 각각 입력','공급가액을 부서별로 배분하여 입력','부가세 불공제인 경우 승인금액(결제총액)을 배분하여 입력'], source:'Q&A 14p' }},
       { id:'n22', keywords:['외근','출장차이','1박'], title:'외근 vs 출장 차이',
-        answer:{ paras:['1박 이상이면 출장, 당일 일정이면 외근으로 분류합니다.'], items:['출장 (1박 이상): 출장신청서 및 보고서 품의 필수 / 개인형 법인카드 식대 결제 불가 / 출장일비 1일 3만원 별도 지급','외근 (당일): 복리후생비_일반_식대 사용 가능 / 중식 1인 1식 1만원(공급가액) 한도','해외 출장: 출장보고서 첨부 필수 / 기안 보고금액과 실제 결제금액 일치 확인 필수'], warn:'출장 중 개인형 법인카드로 식대·공항주차료 결제 불가. 공용법인카드 사용.', source:'Q&A 15p' }},
+        answer:{ paras:['1박 이상이면 출장, 당일 일정이면 외근으로 분류합니다.'], items:['출장 (1박 이상): 출장신청서 및 보고서 품의 필수 / 개인형 법인카드 식대 결제 불가 / 출장일비 1일 3만원 별도 지급','외근 (당일): 복리후생비_일반_식대 사용 가능 / 중식 1인 1식 1만원(공급가액) 한도','해외 출장: 출장보고서 첨부 필수 / 기안 보고금액과 실제 결제금액 일치 확인 필수'], warn:'출장 중 개인형 법인카드로 식대 결제 불가. 사용 시 개인 정산 처리.', source:'Q&A 15p' }},
       { id:'n23', keywords:['수수료','예매수수료','취소수수료','기차','항공'], title:'기차·항공·버스 예매/취소 수수료',
-        answer:{ paras:['항공권, 기차, 시외버스 예매수수료 및 취소수수료는 여비교통비_국내_기타 계정으로 처리합니다.'], items:['계정: 여비교통비_국내_기타 (부가세 공제)','예약금액 = 취소금액이면 둘 다 전표 처리 불필요','예약금액 ≠ 취소금액이면 둘 다 전표 처리 필요, 적요에 취소수수료 등 내용 명시'], source:'Q&A 17p' }}
+        answer:{ paras:['국내 항공권, 기차, 시외버스 예매수수료 및 취소수수료는 여비교통비_국내_기타 계정으로 처리합니다.'], items:['계정: 여비교통비_국내_기타 (부가세 공제)','예약금액 = 취소금액이면 둘 다 전표 처리 불필요','예약금액 ≠ 취소금액이면 둘 다 전표 처리 필요, 적요에 취소수수료 등 내용 명시'], source:'Q&A 17p' }}
     ]
   },
   {
     id:'caution', label:'주의사항', color:'#E24B4A',
     nodes:[
       { id:'n24', keywords:['연체','카드연체','대금연체'], title:'법인카드 대금 연체',
-        answer:{ paras:['법인카드 대금이 연체되면 회사 신용도에 영향을 미칩니다.'], items:['개인형 법인카드: 개인 명의 + 법인 신용 기반 → 연체 시 법인 신용도 하락','발급 이후 2회 이상 연체 시 법인카드 회수','부득이한 개인 용무 사용 시 사전에 재경팀에 공유 및 계좌 잔액 확인 필수'], warn:'연체를 방지하기 위해 매월 마감 전 잔액 및 결제 예정일을 반드시 확인하세요.', source:'법인카드 사용 지침 15p' }},
+        answer:{ paras:['법인카드 대금이 연체되면 회사 신용도에 영향을 미칩니다.'], items:['개인형 법인카드: 개인 명의 + 법인 신용 기반 → 연체 시 법인 신용도 하락','발급 이후 2회 이상 연체 시 법인카드 회수','결제 당일 계좌 잔액 확인 필수'], warn:'사용내역 SMS 수신 시 이용료(400원)는 본인 부담. 잔액 확인 필요.', source:'법인카드 사용 지침 15p' }},
       { id:'n25', keywords:['주유카드','하이패스카드','차량이동'], title:'주유·하이패스 카드 차량 간 이동 금지',
         answer:{ paras:['주유 및 하이패스 카드는 차량별로 매칭되어 있어 다른 차량으로 이동해 사용하면 안 됩니다.'], items:['주유·하이패스 카드: 차량별 1:1 매칭, 차량 간 이동 금지','관련 특이사항은 인사총무팀에 문의','자차 사용 시 법인카드로 주유·통행료·주차료 결제 금지 → 차량운행일지 작성 후 실비 청구'], source:'법인카드 사용 지침 15p' }},
       { id:'n26', keywords:['접대비회의비','계정대체','계정변경'], title:'접대비·회의비 계정대체 금지',
@@ -325,10 +271,8 @@ function toggleCat(bodyId, arrId) {
   a.classList.toggle('open', !a.classList.contains('open'));
 }
 function selectNode(id) {
-  // 기존 패널 제거
   const existing = document.getElementById('ans-panel');
   if (existing) existing.remove();
-
   if (activeNode === id) {
     activeNode = null;
     document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('active'));
@@ -347,10 +291,9 @@ function selectNode(id) {
   if (a.warn) body += `<div class="ans-warn">⚠️ ${a.warn}</div>`;
   if (a.note) body += `<p class="ans-note">${a.note}</p>`;
   if (a.source) body += `<span class="ans-source">출처: ${a.source}</span>`;
-
   const panel = document.createElement('div');
   panel.id = 'ans-panel';
-  panel.className = 'answer-panel open';
+  panel.className = 'answer-panel';
   panel.innerHTML = `
     <div class="ans-header">
       <span class="ans-header-text">${node.title}</span>
@@ -358,8 +301,6 @@ function selectNode(id) {
     </div>
     <div class="ans-body">${body}</div>
   `;
-
-  // 클릭한 node-row 바로 다음에 삽입
   const nodeRow = nb.closest('.node-row');
   nodeRow.insertAdjacentElement('afterend', panel);
   panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -370,7 +311,6 @@ function closeAns() {
   activeNode = null;
   document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('active'));
 }
-
 renderTags();
 renderTree();
 </script>
